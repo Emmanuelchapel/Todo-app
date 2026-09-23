@@ -19,28 +19,26 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
-import os
-from pathlib import Path
+
 
 from dotenv import load_dotenv
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+from pathlib import Path
+import os
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
-# ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-
-
 ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
     ".vercel.app",
-    ]
+]
 
-from django.core.management.utils import get_random_secret_key
-print(get_random_secret_key())
 
 # Application definition
 
