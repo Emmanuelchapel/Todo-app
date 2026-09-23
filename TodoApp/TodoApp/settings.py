@@ -25,12 +25,13 @@ SECRET_KEY = 'django-insecure-pies=@5+e*$f_en7@y3=u)8!-uc#)8fiqsloib(lxw1k6lzc1z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+from django.core.management.utils import get_random_secret_key
+print(get_random_secret_key())
 import os
 
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
-
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
