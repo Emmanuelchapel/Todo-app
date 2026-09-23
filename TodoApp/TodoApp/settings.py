@@ -21,11 +21,10 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 
 
-from dotenv import load_dotenv
 
 from pathlib import Path
 import os
-
+from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
@@ -140,11 +139,16 @@ STATIC_URL = 'static/'
 CORS_ALLOW_ALL_ORIGINS = True
 
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS':['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
-SCHEMA_SETTINGS = {
-    'TITLE':'Task management app'
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Task Management API',
+    'DESCRIPTION': 'API for managing tasks and categories',
+    'VERSION': '1.0.0',
 }
 
 
