@@ -10,37 +10,37 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
-from pathlib import Path
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-pies=@5+e*$f_en7@y3=u)8!-uc#)8fiqsloib(lxw1k6lzc1z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-from django.core.management.utils import get_random_secret_key
-print(get_random_secret_key())
 import os
+from pathlib import Path
 
-DEBUG = os.getenv("DEBUG", "False") == "True"
+from dotenv import load_dotenv
 
-SECRET_KEY = os.getenv("SECRET_KEY")
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / ".env")
+
+SECRET_KEY = os.getenv('SECRET_KEY')
+
+DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
     ".vercel.app",
-]
+    ]
+
+from django.core.management.utils import get_random_secret_key
+print(get_random_secret_key())
 
 # Application definition
 
